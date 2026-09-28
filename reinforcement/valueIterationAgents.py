@@ -48,8 +48,9 @@ class ValueIterationAgent(ValueEstimationAgent):
     def runValueIteration(self):
         # Write value iteration code here
         "*** YOUR CODE HERE ***"
-        new_values = util.Counter()
+        
         for i in range(self.iterations):
+            new_values = util.Counter()
             for s in self.mdp.getStates():
                 a_star = self.getAction(s)
                 new_values[s] = self.getQValue(s,a_star)
@@ -70,7 +71,7 @@ class ValueIterationAgent(ValueEstimationAgent):
         """
         "*** YOUR CODE HERE ***"
         sum = 0.0
-        if not self.mdp.isTerminal(state):
+        if action in self.mdp.getPossibleActions(state):
             for next_s, p in self.mdp.getTransitionStatesAndProbs(state, action):
                 sum += p * (self.mdp.getReward(state,action,next_s) + self.discount * self.values[next_s])
             
